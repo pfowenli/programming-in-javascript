@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Object</title>
+	<script type="text/javascript">
+		function setPopulation(population) {
+			this.population = population;
+		}
+		function city(name, mayor) {
+			this.name = name;
+			this.mayor = mayor;
+			this.setPopulation = setPopulation;
+		}
+	</script>
+</head>
+<body>
+	<script type="text/javascript">
+		var testCity = new city("Graz", "Siegfried Nagl");
+		testCity.setPopulation(269997);
+		document.write("City name: " + testCity.name + "<br>");
+		document.write("City mayor: " + testCity.mayor + "<br>");
+		document.write("City population: " + testCity.population + "<br>");
+	</script>
+</body>
+</html>
