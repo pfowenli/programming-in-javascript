@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Online Shopping</title>
+</head>
+<body>
+    <div>
+	    <h1>Online Shopping</h1>
+	    <input type="checkbox" id="login" onclick="updateMessage();">Log in<br>
+	    <span>Number of A items:</span>
+	    <select id="num-item-A" onchange="updateMessage();">
+	        <option value="0">0</option>
+	        <option value="1">1</option>
+	        <option value="2">2</option>
+	        <option value="3">3</option>
+	        <option value="4">4</option>
+	        <option value="5">5</option>
+	    </select><br>
+	    <span>Number of B items:</span>
+	    <select id="num-item-B" onchange="updateMessage();">
+	        <option value="0">0</option>
+	        <option value="1">1</option>
+	        <option value="2">2</option>
+	        <option value="3">3</option>
+	    </select><br>
+	    <input type="checkbox" id="checkout" onclick="updateMessage();">Ready to check out<br>
+    </div>
+    <hr>
+    <div>
+        <span>Message</span>
+        <p id="message">....</p>
+    </div>
+</body>
+<script type="text/javascript">
+	function updateMessage() {
+		var login = document.getElementById('login').checked;
+		var checkout = document.getElementById('checkout').checked;
+		var indexItemA = document.getElementById('num-item-A').selectedIndex;
+		var optionsItemA = document.getElementById('num-item-A').options;
+		var numItemA = optionsItemA[indexItemA].text;
+		var indexItemB = document.getElementById('num-item-B').selectedIndex;
+		var optionsItemB = document.getElementById('num-item-B').options;
+		var numItemB = optionsItemB[indexItemB].text;
+		var totalItem = numItemA + numItemB;
+		
+		// reset message based on if else conditions
+		var message = "";
+		if (login) {
+			if (checkout && totalItem >= 1) {
+				message = "Pay the check.";
+			} else {
+				message = "Keep shopping.";
+			}
+		} else {
+			message = "Please log in.";
+		}
+		document.getElementById('message').innerHTML = message;
+	}
+</script>
+</html>
