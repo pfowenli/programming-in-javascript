@@ -9,7 +9,7 @@ var work = {
             "title": "Web Administrator",
             "location": "Tainan City",
             "years": 1,
-            "dates": 2015,
+            "dates": "Jul 2014 - Jun 2015",
             "description": "webpage design"
 	    },
 	    {
@@ -17,7 +17,7 @@ var work = {
             "title": "Data Analyst",
             "location": "Tainan City",
             "years": 1,
-            "dates": 2017,
+            "dates": "Oct 2016 - in progress",
             "description": "bioinformatics analysis and web system development"
 	    }
 	]
@@ -107,13 +107,17 @@ if (bio.skills.length > 0) {
     }
 }
 
-$("#workExperience").append(HTMLworkStart);
-for (var i = 0; i < work.jobs.length; i++) {
-    $(".work-entry").append(HTMLworkEmployer.replace("%data%", work.jobs[i].employer) + HTMLworkTitle.replace("%data%", work.jobs[i].title));
-    $(".work-entry").append(HTMLworkDates.replace("%data%", work.jobs[i].dates));
-    $(".work-entry").append(HTMLworkLocation.replace("%data%", work.jobs[i].location));
-    $(".work-entry").append(HTMLprojectDescription.replace("%data%", work.jobs[i].description));
+function displayWork() {
+    for (var i = 0; i < work.jobs.length; i++) {
+	    $("#workExperience").append(HTMLworkStart);
+        $(".work-entry:last").append(HTMLworkEmployer.replace("%data%", work.jobs[i].employer) + HTMLworkTitle.replace("%data%", work.jobs[i].title));
+        $(".work-entry:last").append(HTMLworkDates.replace("%data%", work.jobs[i].dates));
+        $(".work-entry:last").append(HTMLworkLocation.replace("%data%", work.jobs[i].location));
+        $(".work-entry:last").append(HTMLprojectDescription.replace("%data%", work.jobs[i].description));
+    }
 }
+
+displayWork();
 
 $("#education").append(HTMLschoolStart);
 for (var i = 0; i < education.schools.length; i++) {
@@ -122,3 +126,18 @@ for (var i = 0; i < education.schools.length; i++) {
     $(".education-entry").append(HTMLschoolLocation.replace("%data%", education.schools[i].city));
     $(".education-entry").append(HTMLschoolMajor.replace("%data%", education.schools[i].majors.join(", ")));
 }
+
+$("#main").append(internationalizeButton);
+
+function inName(name) {
+	var inName = "";
+	var names = name.trim().split(" ");
+	var firstName = names[0];
+	var lastName = names[1];
+	firstName = firstName.slice(0, 1).toUpperCase() + firstName.slice(1).toLowerCase();
+    lastName = lastName.toUpperCase();
+    inName = firstName + " " + lastName;
+	return inName;
+}
+
+console.log(inName("sabastian thrun"));
