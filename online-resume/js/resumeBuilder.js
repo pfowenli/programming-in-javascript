@@ -26,16 +26,16 @@ var work = {
 var projects = {
     "projects": [
         {
-            "title": "",
-            "dates": "",
-            "description": "",
-            "images": [""]
+            "title": "title 1",
+            "dates": "date 1",
+            "description": "description 1",
+            "images": ["images/197x148.gif"]
         },
         {
-            "title": "",
-            "dates": "",
-            "description": "",
-            "images": [""]
+            "title": "title 2",
+            "dates": "date 2",
+            "description": "description 2",
+            "images": ["images/197x148.gif", "images/197x148.gif"]
         }
     ]
 };
@@ -119,12 +119,27 @@ function displayWork() {
 
 displayWork();
 
-$("#education").append(HTMLschoolStart);
+projects.display = function () {
+	for (var i = 0; i < projects.projects.length; i++) {
+		$("#projects").append(HTMLprojectStart);
+		$(".project-entry:last").append(HTMLprojectTitle.replace("%data%", projects.projects[i].title));
+		$(".project-entry:last").append(HTMLprojectDates.replace("%data%", projects.projects[i].dates));
+		$(".project-entry:last").append(HTMLprojectDescription.replace("%data%", projects.projects[i].description));
+		for (var j = 0; j < projects.projects[i].images.length; j++) {
+			$(".project-entry:last").append(HTMLprojectImage.replace("%data%", projects.projects[i].images[j]));
+		}
+	}
+}
+
+projects.display();
+
+
 for (var i = 0; i < education.schools.length; i++) {
-	$(".education-entry").append(HTMLschoolName.replace("%data%", education.schools[i].name).replace("#", education.schools[0].url) + HTMLschoolDegree.replace("%data%", education.schools[i].degree));
-    $(".education-entry").append(HTMLschoolDates.replace("%data%", education.schools[i].dates));
-    $(".education-entry").append(HTMLschoolLocation.replace("%data%", education.schools[i].city));
-    $(".education-entry").append(HTMLschoolMajor.replace("%data%", education.schools[i].majors.join(", ")));
+	$("#education").append(HTMLschoolStart);
+	$(".education-entry:last").append(HTMLschoolName.replace("%data%", education.schools[i].name).replace("#", education.schools[0].url) + HTMLschoolDegree.replace("%data%", education.schools[i].degree));
+    $(".education-entry:last").append(HTMLschoolDates.replace("%data%", education.schools[i].dates));
+    $(".education-entry:last").append(HTMLschoolLocation.replace("%data%", education.schools[i].city));
+    $(".education-entry:last").append(HTMLschoolMajor.replace("%data%", education.schools[i].majors.join(", ")));
 }
 
 $("#main").append(internationalizeButton);
