@@ -41,7 +41,7 @@ var projects = {
 };
 
 var bio = {
-	"name": "Owen Pei-Fu LI",
+	"name": "Pei-Fu Li",
 	"role": "Data Analyst and Web Developer",
 	"welcomeMessage": "Welcome to Owen's Resume",
 	"contacts": {
@@ -107,7 +107,7 @@ if (bio.skills.length > 0) {
     }
 }
 
-function displayWork() {
+work.display = function () {
     for (var i = 0; i < work.jobs.length; i++) {
 	    $("#workExperience").append(HTMLworkStart);
         $(".work-entry:last").append(HTMLworkEmployer.replace("%data%", work.jobs[i].employer) + HTMLworkTitle.replace("%data%", work.jobs[i].title));
@@ -115,9 +115,7 @@ function displayWork() {
         $(".work-entry:last").append(HTMLworkLocation.replace("%data%", work.jobs[i].location));
         $(".work-entry:last").append(HTMLprojectDescription.replace("%data%", work.jobs[i].description));
     }
-}
-
-displayWork();
+};
 
 projects.display = function () {
 	for (var i = 0; i < projects.projects.length; i++) {
@@ -129,18 +127,18 @@ projects.display = function () {
 			$(".project-entry:last").append(HTMLprojectImage.replace("%data%", projects.projects[i].images[j]));
 		}
 	}
-}
+};
 
-projects.display();
+education.display = function() {
+	for (var i = 0; i < education.schools.length; i++) {
+		$("#education").append(HTMLschoolStart);
+		$(".education-entry:last").append(HTMLschoolName.replace("%data%", education.schools[i].name).replace("#", education.schools[0].url) + HTMLschoolDegree.replace("%data%", education.schools[i].degree));
+	    $(".education-entry:last").append(HTMLschoolDates.replace("%data%", education.schools[i].dates));
+	    $(".education-entry:last").append(HTMLschoolLocation.replace("%data%", education.schools[i].location));
+	    $(".education-entry:last").append(HTMLschoolMajor.replace("%data%", education.schools[i].majors.join(", ")));
+	}
+};
 
-
-for (var i = 0; i < education.schools.length; i++) {
-	$("#education").append(HTMLschoolStart);
-	$(".education-entry:last").append(HTMLschoolName.replace("%data%", education.schools[i].name).replace("#", education.schools[0].url) + HTMLschoolDegree.replace("%data%", education.schools[i].degree));
-    $(".education-entry:last").append(HTMLschoolDates.replace("%data%", education.schools[i].dates));
-    $(".education-entry:last").append(HTMLschoolLocation.replace("%data%", education.schools[i].location));
-    $(".education-entry:last").append(HTMLschoolMajor.replace("%data%", education.schools[i].majors.join(", ")));
-}
 
 function inName(name) {
 	var inName = "";
@@ -155,6 +153,9 @@ function inName(name) {
 
 console.log(inName("sabastian thrun"));
 
-$("#main").append(internationalizeButton);
+work.display();
+projects.display();
+education.display();
 
+$("#main").append(internationalizeButton);
 $("#mapDiv").append(googleMap);
