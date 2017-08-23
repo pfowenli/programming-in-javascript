@@ -17,7 +17,7 @@ var work = {
             "title": "Data Analyst",
             "location": "Tainan City",
             "years": 1,
-            "dates": "Oct 2016 - in progress",
+            "dates": "Oct 2016 - current",
             "description": "bioinformatics analysis and web system development"
 	    }
 	]
@@ -57,7 +57,7 @@ var education = {
 	"schools": [
 	    {
 	    	"name": "National Taiwan University of Science and Technology",
-	    	"city": "Taipei City",
+	    	"location": "Taipei City",
 	    	"degree": "BA",
 	    	"years": 3.5,
 	    	"dates": 2013,
@@ -66,7 +66,7 @@ var education = {
 	    },
 	    {
 	    	"name": "National Cheng Kung University",
-	    	"city": "Tainan City",
+	    	"location": "Tainan City",
 	    	"degree": "Masters",
 	    	"years": 2.5,
 	    	"dates": 2015,
@@ -138,11 +138,9 @@ for (var i = 0; i < education.schools.length; i++) {
 	$("#education").append(HTMLschoolStart);
 	$(".education-entry:last").append(HTMLschoolName.replace("%data%", education.schools[i].name).replace("#", education.schools[0].url) + HTMLschoolDegree.replace("%data%", education.schools[i].degree));
     $(".education-entry:last").append(HTMLschoolDates.replace("%data%", education.schools[i].dates));
-    $(".education-entry:last").append(HTMLschoolLocation.replace("%data%", education.schools[i].city));
+    $(".education-entry:last").append(HTMLschoolLocation.replace("%data%", education.schools[i].location));
     $(".education-entry:last").append(HTMLschoolMajor.replace("%data%", education.schools[i].majors.join(", ")));
 }
-
-$("#main").append(internationalizeButton);
 
 function inName(name) {
 	var inName = "";
@@ -156,3 +154,7 @@ function inName(name) {
 }
 
 console.log(inName("sabastian thrun"));
+
+$("#main").append(internationalizeButton);
+
+$("#mapDiv").append(googleMap);
