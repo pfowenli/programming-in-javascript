@@ -1,0 +1,25 @@
+h1 {
+  margin: 5px;
+}
+
+p {
+  margin-left: 5px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.chart div {
+  font: 10px sans-serif;
+  text-align: right;
+  padding: 5px;
+  margin: 5px;
+  color: white;
+}
+
+#section-1 .chart div {
+	background-color: orange;
+}
+
+#section-2 .chart div {
+	background-color: steelblue;
+}
